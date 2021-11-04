@@ -1,6 +1,9 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 
+KEY_LENGTH = 8
+MSG_LENGTH = 160
+
 # PURPOSE:
 # Given a key, check if it is alphanumeric
 #
@@ -27,8 +30,8 @@ def validate_key_alphanum(key):
 #
 def validate_key_length(key):
     key = str(key)
-    if len(key) != 8:
-        raise ValidationError('Key must have a length of 8', code='key_length')
+    if len(key) != KEY_LENGTH:
+        raise ValidationError(f'Key must have a length of {KEY_LENGTH}', code='key_length')
 
 
 # PURPOSE:
@@ -57,8 +60,8 @@ def validate_key_unique(key):
 # Raise django validation error if the msg is not validated
 #
 def validate_msg_length(msg):
-    if len(msg) < 1 or len(msg) > 160:
-        raise ValidationError('Message must have a length between 1-160', code='msg_length')
+    if len(msg) < 1 or len(msg) > MSG_LENGTH:
+        raise ValidationError(f'Message must have a length between 1-{MSG_LENGTH}', code='msg_length')
         
 # PURPOSE:
 # Create a Message model/class that consists of a key and a message
@@ -76,7 +79,7 @@ def validate_msg_length(msg):
 # key and msg are passed to the validation methods described in this file
 # 
 class Message(models.Model):
-    key = models.CharField(primary_key=True,max_length=8, validators=[validate_key_alphanum, validate_key_length, validate_key_unique])
+    key = models.CharField(primary_key=True,max_length=KEY_LENGTH, validators=[validate_key_alphanum, validate_key_length, validate_key_unique])
     msg = models.TextField(validators=[validate_msg_length])
 
     def __str__(self):
