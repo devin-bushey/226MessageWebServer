@@ -25,12 +25,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: Install pipenv
-        run: |
-              pip3 install pipenv
-              echo 'DJANGO_SECRET_KEY=TESTING' > .env
+        run: pip3 install pipenv
         
       - name: Run the tests
         run: |
               pipenv install django
+              echo 'DJANGO_SECRET_KEY=TESTING' > .env
               pipenv run website/manage.py test msgserver
 
