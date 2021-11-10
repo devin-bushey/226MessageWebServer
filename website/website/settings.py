@@ -14,10 +14,10 @@ from pathlib import Path
 import os
 import dj_database_url
 import django_heroku
-
+from decouple import config
 
 SECURE_HSTS_SECONDS = 60
-#SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
@@ -35,9 +35,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
+#SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 #SECRET_KEY = 'NPh~@MVP|>Csks&8Y?k)+2v<_dh*)@okh+10_}ch;+cbm-*7Tb'
 #NPh~@MVP|>Csks&8Y?k)+2v<_dh*)@okh+10_}ch;+cbm-*7Tb
+#.)Z%Q6rX;lhmQT<~ZQIIu1I<jG2.2WhXAH{Wba0i.wwgDrONI}
+SECRET_KEY = config('DJANGO_SECRET_KEY')
+
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
