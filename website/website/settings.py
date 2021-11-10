@@ -36,11 +36,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 #SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
-DJANGO_SECRET_KEY = 'NPh~@MVP|>Csks&8Y?k)+2v<_dh*)@okh+10_}ch;+cbm-*7Tb'
-#NPh~@MVP|>Csks&8Y?k)+2v<_dh*)@okh+10_}ch;+cbm-*7Tb
-#.)Z%Q6rX;lhmQT<~ZQIIu1I<jG2.2WhXAH{Wba0i.wwgDrONI}
-#SECRET_KEY = config('DJANGO_SECRET_KEY')
-
+#SECRET_KEY = 'NPh~@MVP|>Csks&8Y?k)+2v<_dh*)@okh+10_}ch;+cbm-*7Tb'
+SECRET_KEY = '[$_Mje9?ti4UpYdJZJMBey=?a](d,d#GyX])X1}x$faL%uqKx2'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -147,7 +144,7 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-if os.environ.get('DJANGO_SECRET_KEY') != 'TESTING':
+if os.environ.get('SECRET_KEY') != 'TESTING':
     print(' ')
 
 db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
