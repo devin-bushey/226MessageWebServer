@@ -7,8 +7,9 @@ class MessageTestCase(TestCase):
     def test_create(self):
         #print('[START TEST]: test_create')
         response = self.client.post("/msgserver/create/", {'key': '87654CBA', 'msg': 'Test Case #1'})
+        print(b'content ' + response.content)
         m = Message.objects.get(key='87654CBA')
-        #print('key: ', m.key, 'msg: ', m.msg)
+        print('key: ', m.key, 'msg: ', m.msg)
         self.assertEqual(m.key, '87654CBA')
         self.assertEqual(m.msg, 'Test Case #1')
 
