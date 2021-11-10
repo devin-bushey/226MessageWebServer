@@ -10,11 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from pathlib import Path
 import os
+from pathlib import Path
 import dj_database_url
 import django_heroku
-#from decouple import config
 
 SECURE_HSTS_SECONDS = 60
 SECURE_SSL_REDIRECT = True
@@ -22,8 +21,6 @@ SESSION_COOKIE_SECURE = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
 CSRF_COOKIE_SECURE = True
-
-
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -35,10 +32,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
-#SECRET_KEY = 'NPh~@MVP|>Csks&8Y?k)+2v<_dh*)@okh+10_}ch;+cbm-*7Tb'
-SECRET_KEY = '[$_Mje9?ti4UpYdJZJMBey=?a](d,d#GyX])X1}x$faL%uqKx2'
-
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -147,8 +141,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 if os.environ.get('SECRET_KEY') != 'TESTING':
     print(' ')
 
-db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
-DATABASES['default'].update(db_from_env)
+    db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
+    DATABASES['default'].update(db_from_env)
 
-django_heroku.settings(locals())
+    django_heroku.settings(locals())
 
